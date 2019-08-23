@@ -1,8 +1,4 @@
 Test
 Test2
-<<<<<<< HEAD
-<<<<<<< HEAD
 jojo~~~
-
 sage
-
