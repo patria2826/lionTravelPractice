@@ -1,5 +1,7 @@
 Test
 Test2
+<<<<<<< HEAD
 jojo~~~
 =======
 sage
+>>>>>>> conflict_test
