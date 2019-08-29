@@ -1,4 +1,4 @@
-import { cube, foo, graph } from 'js_module_export_1.js';
+import { cube, foo, graph } from './main1';
 
 graph.options = {
     color: 'blue',
