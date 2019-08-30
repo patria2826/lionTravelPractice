@@ -3,6 +3,7 @@ import Item from './Item';
 import Input from './Input';
 import Parent from './Parent';
 import ChangePic from './ChangePic';
+import Progress from './Progress';
 
 class List extends Component {
     render() {
@@ -19,6 +20,8 @@ class List extends Component {
                 <Parent />
                 <hr></hr>
                 <ChangePic />
+                <hr></hr>
+                <Progress />
                 <hr></hr>
 
             </div>
