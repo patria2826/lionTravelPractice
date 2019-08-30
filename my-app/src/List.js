@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Item from './Item';
 import Input from './Input';
+import Parent from './Parent';
 
 class List extends Component {
     render() {
@@ -11,7 +12,11 @@ class List extends Component {
                     <Item text='BBB' price="{100}" />
                     <Item>CCC</Item>
                 </ol>
+                <hr></hr>
                 <Input />
+                <hr></hr>
+                <Parent />
+                <hr></hr>
             </div>
         )
     }
