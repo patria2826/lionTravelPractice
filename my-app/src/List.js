@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Item from './Item';
 import Input from './Input';
 import Parent from './Parent';
+import ChangePic from './ChangePic';
 
 class List extends Component {
     render() {
@@ -17,6 +18,9 @@ class List extends Component {
                 <hr></hr>
                 <Parent />
                 <hr></hr>
+                <ChangePic />
+                <hr></hr>
+
             </div>
         )
     }

@@ -1,0 +1,6 @@
+img{
+    width: 500px;
+}
+img.hide{
+    opacity: 0.2;
+}
