@@ -18,7 +18,14 @@ class App extends Component {
             }
         );
     }
+    componentDidMount(){
+        console.log('componentDidMount');
+    }
+    componentDidUpdate(){
+        console.log('componentDidUpdate');
+    }
     render() {
+        console.log('render');
         let msg;
         if (this.state.lat && !this.state.errMsg) {
             msg = this.state.lat;
