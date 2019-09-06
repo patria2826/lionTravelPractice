@@ -8,7 +8,9 @@ class App extends React.Component {
         images: []
     }
     onSearchSubmit = async (term) => {
-        // if you don't bind "this" to App here, the "this" of this function points to the props object that was passed to SearchBar
+        // if you don't bind "this" to App here, 
+        // the "this" of this function points to the props object that was passed to SearchBar,
+        // for this function is being called inside the SearchBar "onFormSubmit" function.
         const response = await unsplash.get('/search/photos', {
             params: { query: term },
         });

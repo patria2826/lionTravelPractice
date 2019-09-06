@@ -1,9 +1,7 @@
 import React from 'react'
 
 class SearchBar extends React.Component {
-    state = {
-        term: ''
-    };
+    state = { term: '' };
     // The "this" inside the callback function of onSubmit is not the class itself.
     // You have to bind "this" to the class by yourself.
     onFormSubmit = (event) => {
@@ -13,7 +11,8 @@ class SearchBar extends React.Component {
     render() {
         return (
             <div className="ui segment">
-                <form className="ui form" onSubmit={this.onFormSubmit}>
+                <form className="ui form" onSubmit={this.onFormSubmit}> {/* //"onFormSubmit" passes data to "onFormSubmit" of parent */}
+                
                     <div className="field">
                         <label>Image Search</label>
                         <input
