@@ -1,8 +1,9 @@
 import React from 'react'
 
-class searchBar extends React.Component {
+class SearchBar extends React.Component {
     state = {
-        term: ''
+        term: '',
+        originalTerm: ''
     }
     onInputChange = (event) => {
         this.setState({ term: event.target.value });
@@ -10,8 +11,12 @@ class searchBar extends React.Component {
     onFormSubmit = (event) => {
         event.preventDefault();
 
+        //Don't search if the keywords are the same
+        this.setState({ originalTerm: this.state.term });
+
         //we call callback from parent component
-        this.props.onFormSubmit(this.state.term);
+        //Don't search if the keywords are the same
+        if (this.state.originalTerm !== this.state.term) { this.props.onFormSubmit(this.state.term) };
     }
     render() {
         return (
@@ -30,4 +35,4 @@ class searchBar extends React.Component {
         )
     }
 }
-export default searchBar;
+export default SearchBar;
