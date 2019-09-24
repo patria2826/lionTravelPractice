@@ -44,7 +44,7 @@ abstract class Player implements GameObj {
 }
 
 class Gunner extends Player {
-    bulletsLeft: number = 10;
+    private _bulletsLeft: number = 10; //the underline is for the camelcase convention
 
     constructor( //arguments declared here have nothing to do with the parent class
         bulletsUsed: number,
@@ -54,21 +54,37 @@ class Gunner extends Player {
         y?: number,
     ) {
         super(name, x, y); //inherits arguments declared in the parent class when using super
-        bulletsUsed > 10 ? this.bulletsLeft = 0 : this.bulletsLeft -= bulletsUsed;
-    }
-    
-    updatePlayer() { //has nothig to do with method of parent
-        super.updatePlayer(); //inherits method of parent
-        this.bulletsLeft++;
+        bulletsUsed > 10 ? this._bulletsLeft = 0 : this._bulletsLeft -= bulletsUsed;
     }
 
-    calMotion() { } //method from parent
+    updatePlayer() { //has nothig to do with method of parent
+        super.updatePlayer(); //inherits method of parent
+        this._bulletsLeft++;
+    }
+
+    calMotion() { } //abstract method from parent, nust implement
+
+    get bulletsLeft() { 
+        return this._bulletsLeft;
+    }
+
+    set bulletsLeft(value: number) {
+        if (value < 0) {
+            throw new Error('value cannot be less than 0.');
+        }
+        this._bulletsLeft = value;
+    }
 }
 
 let p1 = new Gunner(5, "Sam", "N/a"); //cannot new an abstract class
 let p2 = new Gunner(3, "Leo", "Nuclear Bomber", 3, 5);
 let p3 = new Gunner(2, "Jesicca", "Razor Gun", 2, 3);
 let p4 = new Gunner(10, "Nancy", "Machine Gun", 1, 1);
+
+p4.bulletsLeft = 6;
+let bb = p4.bulletsLeft;
+console.log(bb)
+
 
 p1.display('Rooky Player');
 p2.display('Pro Player');

@@ -43,21 +43,37 @@ var Gunner = /** @class */ (function (_super) {
     bulletsUsed, name, gunType, x, y) {
         var _this = _super.call(this, name, x, y) || this;
         _this.gunType = gunType;
-        _this.bulletsLeft = 10;
-        bulletsUsed > 10 ? _this.bulletsLeft = 0 : _this.bulletsLeft -= bulletsUsed;
+        _this._bulletsLeft = 10; //the underline is for the camelcase convention
+        bulletsUsed > 10 ? _this._bulletsLeft = 0 : _this._bulletsLeft -= bulletsUsed;
         return _this;
     }
     Gunner.prototype.updatePlayer = function () {
         _super.prototype.updatePlayer.call(this); //inherits method of parent
-        this.bulletsLeft++;
+        this._bulletsLeft++;
     };
-    Gunner.prototype.calMotion = function () { }; //method from parent
+    Gunner.prototype.calMotion = function () { }; //abstract method from parent, nust implement
+    Object.defineProperty(Gunner.prototype, "bulletsLeft", {
+        get: function () {
+            return this._bulletsLeft;
+        },
+        set: function (value) {
+            if (value < 0) {
+                throw new Error('value cannot be less than 0.');
+            }
+            this._bulletsLeft = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Gunner;
 }(Player));
 var p1 = new Gunner(5, "Sam", "N/a"); //cannot new an abstract class
 var p2 = new Gunner(3, "Leo", "Nuclear Bomber", 3, 5);
 var p3 = new Gunner(2, "Jesicca", "Razor Gun", 2, 3);
 var p4 = new Gunner(10, "Nancy", "Machine Gun", 1, 1);
+p4.bulletsLeft = 6;
+var bb = p4.bulletsLeft;
+console.log(bb);
 p1.display('Rooky Player');
 p2.display('Pro Player');
 p3.display('Pro Player');
