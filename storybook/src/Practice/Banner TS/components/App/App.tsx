@@ -3,10 +3,10 @@ import Banner from '../Banner';
 import './App.css';
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
+  constructor(props:any) {
+    super(props);
   //   this.myRef = createRef();
-  // }
+  }
   // banner = (instruction) => {
   //   switch (instruction) {
   //     case "open": {
