@@ -1,3 +1,5 @@
+.cache
+dist
 package-lock.json
 node_modules
 node_modules/source-map-support/node_modules/source-map/lib/binary-search.js
