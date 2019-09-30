@@ -1,3 +1,9 @@
+interface MarkerConfig {
+  location: {
+    lat: number;
+    lng: number;
+  }
+}
 export class CustomMap {
   private googleMap: google.maps.Map;
   constructor(divId: string) {
@@ -6,7 +12,18 @@ export class CustomMap {
         lat: 0,
         lng: 0
       },
-      zoom: 5
+      zoom: 1
     });
+  }
+  setMarker(mappable: MarkerConfig): void {
+    new google.maps.Marker(
+      {
+        map: this.googleMap,
+        position: {
+          lat: mappable.location.lat,
+          lng: mappable.location.lng
+        }
+      }
+    )
   }
 }
