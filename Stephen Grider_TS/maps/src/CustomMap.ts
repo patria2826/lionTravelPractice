@@ -1,9 +1,5 @@
-interface MarkerConfig {
-  location: {
-    lat: number;
-    lng: number;
-  }
-}
+import { Mappable } from "./Mappable";
+
 export class CustomMap {
   private googleMap: google.maps.Map;
   constructor(divId: string) {
@@ -15,15 +11,19 @@ export class CustomMap {
       zoom: 1
     });
   }
-  setMarker(mappable: MarkerConfig): void {
-    new google.maps.Marker(
-      {
-        map: this.googleMap,
-        position: {
-          lat: mappable.location.lat,
-          lng: mappable.location.lng
-        }
+  setMarker(mappable: Mappable): void {
+    const marker = new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: mappable.location.lat,
+        lng: mappable.location.lng
       }
-    )
+    });
+    marker.addListener("click", () => {
+      const infoWindow = new google.maps.InfoWindow({
+        content: mappable.markerContent()
+      });
+      infoWindow.open(this.googleMap, marker);
+    });
   }
 }
