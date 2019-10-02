@@ -6,8 +6,7 @@ var Summary = /** @class */ (function () {
         this.outputTarget = outputTarget;
     }
     Summary.prototype.buildAndPrintReport = function (matches) {
-        this.analyzer.run(matches);
-        this.outputTarget.print("sth");
+        this.outputTarget.print(this.analyzer.run(matches));
     };
     return Summary;
 }());
