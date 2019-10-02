@@ -1,11 +1,10 @@
-import fs from "fs"; //npm install @types/node
+import { MatchReader } from "./MatchReader";
+import { CSVFileReader } from "./CSVFileReader";
+import { MatchResult } from "./MatchResult";
 
-const matches = fs
-  .readFileSync("football.csv", {
-    encoding: "utf-8"
-  })
-  .split("\n")
-  .map((row: string): string[] => {
-    return row.split(",");
-  });
-console.log(matches);
+// Create an object that satisfies the "DataReader" interface
+const csvFileReader = new CSVFileReader("football.csv");
+
+// Create an instance of MatchReader and pass in sth satisfying the 'DataReader' interface
+const matchReader = new MatchReader(csvFileReader);
+matchReader.load();
