@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 import { Eventing } from "./Eventing";
 
-export class Collection<T> {
+export class Collection<T, P> {
   models: T[] = [];
   events: Eventing = new Eventing();
 
-  constructor(public rootUrl: string) {}
+  constructor(public rootUrl: string, public deserialize: (json: P) => T) {}
 
   get on() {
     return this.events.on;
@@ -17,8 +17,8 @@ export class Collection<T> {
 
   fetch(): void {
     axios.get(this.rootUrl).then((response: AxiosResponse) => {
-      response.data.forEach((value: T) => {
-        this.models.push(value);
+      response.data.forEach((value: P) => {
+        this.models.push(this.deserialize(value));
       });
 
       this.events.trigger("change");
