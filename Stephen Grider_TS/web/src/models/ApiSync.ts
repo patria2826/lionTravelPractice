@@ -1,10 +1,10 @@
 import axios, { AxiosPromise } from "axios";
 
-interface HasId {
+export interface HasId {
   id?: number;
 }
 
-export class Sync<T extends HasId> {
+export class ApiSync<T extends HasId> {
   constructor(public rootUrl: string) {}
   // there won't be an ending "/" in rootUrl incase we mess things up when
   // whether we want to update data or add new data

@@ -1,10 +1,10 @@
-import { User } from "./models/User";
+import { Collection } from "./models/Collection";
 
-const user = new User({ name: "Ammy", age: 22 });
-console.log(user.on);
+const collection = new Collection("http://localhost:3000/users");
 
-console.log(user.get("name"));
-user.on("change", () => {
-  console.log("YOooooo");
+collection.on("change", () => {
+  console.log(collection);
+  console.log(this);
 });
-user.trigger("change");
+
+collection.fetch();
