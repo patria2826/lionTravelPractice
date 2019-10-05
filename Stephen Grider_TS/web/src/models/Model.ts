@@ -36,13 +36,13 @@ export class Model<T extends HasId> {
   fetch(): void {
     const id = this.get("id");
 
-    if (!id) {
+    if (typeof id === "number") {
+      this.sync.fetch(id).then((ressponse: AxiosResponse) => {
+        this.set(ressponse.data);
+      });
+    } else {
       throw new Error("Cannot fetch without an ID.");
     }
-
-    this.sync.fetch(id).then((ressponse: AxiosResponse) => {
-      this.set(ressponse.data);
-    });
   }
 
   save(): void {

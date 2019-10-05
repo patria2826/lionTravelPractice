@@ -1,9 +1,16 @@
+import { UserEdit } from "./views/UserEdit";
 import { User } from "./models/User";
 
-const userCollection = User.buildUserCollection();
+const user = User.buildUser({ name: "jake", age: 6 });
 
-userCollection.on("change", () => {
-  console.log(userCollection);
-});
+const root = document.getElementById("root");
 
-userCollection.fetch();
+if (root) {
+  const userEdit = new UserEdit(root, user);
+
+  userEdit.render();
+
+  console.log(userEdit);
+} else {
+  throw new Error("User Element Not Found.");
+}
