@@ -1,0 +1,12 @@
+.Pokecard-types {
+  padding: 0 5px;
+}
+
+.Pokecard-types.poison {
+  background-color: blueviolet;
+  color: #fff;
+}
+.Pokecard-types.grass {
+  background-color: green;
+  color: #fff;
+}
