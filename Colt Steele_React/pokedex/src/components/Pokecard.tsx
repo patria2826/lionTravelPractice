@@ -21,10 +21,6 @@ function Pokecard(props: any) {
       setPokeTypes(types);
     });
   }, []);
-  useEffect(() => {
-    if (pokeTypes.length > 0) {
-    }
-  }, [pokeTypes]);
 
   return (
     <div className="Pokecard">
