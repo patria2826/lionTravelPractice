@@ -29,9 +29,8 @@ function Pokecard(props: any) {
   return (
     <div className="Pokecard">
       <h3>{pokeName.toUpperCase()}</h3>
-      <img src={`${imgApi}${id}.png`} alt={pokeName} />
-      <p>
-        Types:
+      <img src={`${imgApi}${id}.png`} alt={pokeName} className="Pokecard-img" />
+      <p className="Pokecard-type-title">
         {pokeTypes.map((type, i) => {
           return (
             <span key={i} className={`Pokecard-types ${type}`}>

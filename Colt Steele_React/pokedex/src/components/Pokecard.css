@@ -1,12 +1,73 @@
+.Pokecard {
+  width: 150px;
+  margin: 1px;
+  padding: 3px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  border: 2px solid #000;
+}
+.Pokecard-img {
+  width: fit-content;
+}
 .Pokecard-types {
-  padding: 0 5px;
+  margin: 1px;
+  padding: 3px 5px;
+  border-radius: 5px;
+  color: #fff;
 }
 
-.Pokecard-types.poison {
-  background-color: blueviolet;
-  color: #fff;
-}
 .Pokecard-types.grass {
   background-color: green;
-  color: #fff;
+}
+.Pokecard-types.fire {
+  background-color: orangered;
+}
+.Pokecard-types.water {
+  background-color: rgb(39, 39, 177);
+}
+.Pokecard-types.poison {
+  background-color: blueviolet;
+}
+.Pokecard-types.flying {
+  background-color: rgb(108, 108, 224);
+}
+.Pokecard-types.bug {
+  background-color: rgb(124, 180, 33);
+}
+.Pokecard-types.normal {
+  background-color: rgb(174, 177, 169);
+}
+.Pokecard-types.electric {
+  background-color: rgb(255, 208, 0);
+}
+.Pokecard-types.ground {
+  background-color: rgb(182, 154, 79);
+}
+.Pokecard-types.rock {
+  background-color: rgb(184, 176, 154);
+}
+.Pokecard-types.fairy {
+  background-color: rgb(255, 160, 247);
+}
+.Pokecard-types.fighting {
+  background-color: rgb(172, 63, 0);
+}
+.Pokecard-types.psychic {
+  background-color: rgb(255, 0, 212);
+}
+.Pokecard-types.steel {
+  background-color: rgb(149, 149, 149);
+}
+.Pokecard-types.ice {
+  background-color: rgb(0, 195, 255);
+}
+.Pokecard-types.ghost {
+  background-color: rgb(64, 69, 131);
+}
+.Pokecard-types.dragon {
+  background-color: rgb(84, 47, 248);
+}
+.Pokecard-types.dark {
+  background-color: rgb(66, 53, 3);
 }

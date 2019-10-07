@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Pokecard from "./components/Pokecard";
+import './App.css';
 
 interface PokeData {
   name: string;
@@ -8,7 +9,7 @@ interface PokeData {
 }
 
 function App(props: any) {
-  const pokeLimit = 1;
+  const pokeLimit = 807;
   const POKE_API = `https://pokeapi.co/api/v2/pokemon/?limit=${pokeLimit}`;
 
   const [pokemons, setPokemons] = useState([]);
