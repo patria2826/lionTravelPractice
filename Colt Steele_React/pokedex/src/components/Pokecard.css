@@ -1,5 +1,7 @@
 .Pokecard {
-  width: 150px;
+  width: calc(100% / 7);
+  max-width: 220px;
+  min-width: 200px;
   margin: 1px;
   padding: 3px;
   display: flex;
@@ -7,8 +9,16 @@
   align-items: center;
   border: 2px solid #000;
 }
+.Pokecard-name {
+  width: 100%;
+  margin: 0;
+  padding: 0.5em 0;
+  background-color: #ddd;
+  text-align: center;
+}
 .Pokecard-img {
-  width: fit-content;
+  margin: 5px;
+  width: 90%;
 }
 .Pokecard-types {
   margin: 1px;

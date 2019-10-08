@@ -4,8 +4,7 @@ import "./Pokecard.css";
 
 function Pokecard(props: any) {
   const { pokeName, url, id } = props;
-  const imgApi =
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+  const imgApi = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/";
   const dataApi = url;
 
   const [pokeTypes, setPokeTypes] = useState([""]);
@@ -24,8 +23,14 @@ function Pokecard(props: any) {
 
   return (
     <div className="Pokecard">
-      <h3>{pokeName.toUpperCase()}</h3>
-      <img src={`${imgApi}${id}.png`} alt={pokeName} className="Pokecard-img" />
+      <h3 className="Pokecard-name">
+        {pokeName.charAt(0).toUpperCase() + pokeName.slice(1)}
+      </h3>
+      <img
+        src={`${imgApi}${id < 100 ? (id < 10 ? "00" : "0") : ""}${id}.png`}
+        alt={pokeName}
+        className="Pokecard-img"
+      />
       <p className="Pokecard-type-title">
         {pokeTypes.map((type, i) => {
           return (

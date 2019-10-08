@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import LazyLoad from "react-lazyload";
 import Pokecard from "./components/Pokecard";
-import './App.css';
+import "./App.css";
 
 interface PokeData {
   name: string;
@@ -9,7 +10,7 @@ interface PokeData {
 }
 
 function App(props: any) {
-  const pokeLimit = 807;
+  const pokeLimit = 809;
   const POKE_API = `https://pokeapi.co/api/v2/pokemon/?limit=${pokeLimit}`;
 
   const [pokemons, setPokemons] = useState([]);
@@ -20,21 +21,18 @@ function App(props: any) {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(pokemons);
-  }, []);
-
   return (
     <div className="App">
       {pokemons.length > 0 &&
         pokemons.map((pokemon: PokeData, i: number) => {
           return (
-            <Pokecard
-              key={i}
-              pokeName={pokemon["name"]}
-              id={i + 1}
-              url={pokemon["url"]}
-            />
+            <LazyLoad key={i}>
+              <Pokecard
+                pokeName={pokemon["name"]}
+                id={i + 1}
+                url={pokemon["url"]}
+              />
+            </LazyLoad>
           );
         })}
     </div>
