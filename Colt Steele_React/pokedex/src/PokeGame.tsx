@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Pokecard from "./components/Pokecard";
 import axios from "axios";
-import LazyLoad from "react-lazyload";
+// import LazyLoad from "react-lazyload";
 import "./PokeGame.css";
 
 interface pokemonNameAndId {
@@ -46,14 +46,17 @@ function PokeGame(props: any) {
   }, []);
 
 
-  useEffect(() => { console.log(battlePoints) })
+  useEffect(() => {
+    console.log(battlePoints)
+    console.log(team1)
+  })
   return (
     <div className="PokeGame">
-      <div className="PokeGame-team">
-        <h2>Team 1</h2>
-        <LazyLoad>
-
-          {(team1.length > 0 && team2.length > 0) &&
+      {(team1.length > 0 && team2.length > 0) &&
+        <div>
+          <div className="PokeGame-team">
+            <h2>Team 1</h2>
+            {/* <LazyLoad> */}
             <div className="PokeGame-members">
               {team1.map((pokemon, i) => {
                 return (
@@ -63,39 +66,30 @@ function PokeGame(props: any) {
                       id={pokemon["id"]}
                       getBP={(battlePoint: number) => { setBattlePoints((prev) => { return [...prev, { [pokemon["id"].toString()]: battlePoint }] }) }}
                     ></Pokecard>
-                    {/* {battlePoints[team1[i].id] > battlePoints[team2[i].id] && <div className="PokeGame-winner">Winner!!</div>} */}
                   </div>
                 );
               })}
-            </div>}
-        </LazyLoad>
-
-      </div>
-      <div className="PokeGame-team">
-        <h2>Team 2</h2>
-        <div className="PokeGame-members">
-          {team2.length > 0 &&
-            team2.map((pokemon, i) => {
-              return (
-                <div key={i} className="PokeGame-each-member">
-                  <Pokecard
-                    pokeName={pokemon["name"]}
-                    id={pokemon["id"]}
-                    getBP={(battlePoint: number) => { setBattlePoints((prev) => { return [...prev, { [pokemon['id']]: battlePoint }] }) }}
-                  ></Pokecard>
-                  <div className="PokeGame-winner">Winner!!</div>
-                </div>
-              );
-            })}
-        </div>
-      </div>
-      {/* {() => {
-        if (team1.length > 0 && team2.length > 0) {
-            for(let i =0;i<memberCnt;i++){
-                PK(team1[i],team2[i])
-            }
-        }
-      }} */}
+            </div>
+            {/* </LazyLoad> */}
+          </div>
+          <div className="PokeGame-team">
+            <h2>Team 2</h2>
+            <div className="PokeGame-members">
+              {team2.map((pokemon, i) => {
+                return (
+                  <div key={i} className="PokeGame-each-member">
+                    <Pokecard
+                      pokeName={pokemon["name"]}
+                      id={pokemon["id"]}
+                      getBP={(battlePoint: number) => { setBattlePoints((prev) => { return [...prev, { [pokemon['id']]: battlePoint }] }) }}
+                    ></Pokecard>
+                    <div className="PokeGame-winner">Winner!!</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>}
     </div>
   );
 }

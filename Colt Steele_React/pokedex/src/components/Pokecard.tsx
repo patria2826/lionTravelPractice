@@ -78,7 +78,7 @@ function Pokecard(props: any) {
               <p className="Pokecard-stat-title">{firstCharUpperCase(key)}</p>
               <span
                 className="Pokecard-stat-bar"
-                style={{ width: `${status[key] * 0.7}px` }}
+                style={{ width: `${status[key] * 0.6}px` }}
               ></span>
               <span className="Pokecard-stat-val">{status[key]}</span>
             </span>
