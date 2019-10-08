@@ -3,7 +3,7 @@ body {
 }
 .Pokecard {
   width: calc(100% / 7);
-  min-width: 200px;
+  min-width: 220px;
   margin: 1px;
   padding: 3px;
   display: flex;
@@ -96,7 +96,7 @@ body {
   margin: 0;
 }
 .Pokecard-stat-bar {
-  height: 12px;
+  height: 8px;
   background-color: antiquewhite;
   display: inline-block;
 }

@@ -7,8 +7,26 @@
   flex-flow: column;
   align-items: center;
 }
-.PokeGame-member {
+.PokeGame-members {
   display: flex;
   flex-flow: row;
   justify-content: center;
+}
+.PokeGame-each-member {
+  position: relative;
+}
+.PokeGame-winner {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  z-index: 1;
+  background-color: #f00;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 70px;
+  font-weight: 900;
+  color: #fff;
+  transform: rotate(22deg);
 }

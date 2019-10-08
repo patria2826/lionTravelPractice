@@ -20,9 +20,6 @@ function Pokecard(props: any) {
   const [pokeStat, setPokeStat] = useState<pokemonStat[]>([]);
 
   useEffect(() => {
-    if (getBP) {
-      getBP(3);
-    }
     axios.get(`${dataApi}${id}/`).then(response => {
       response.data.types.map((type: { type: { name: string } }) => {
         setPokeTypes(prev => {
@@ -38,6 +35,22 @@ function Pokecard(props: any) {
       );
     });
   }, []);
+
+  useEffect(() => {
+    if (getBP) {
+      if (pokeStat.length >= 6) {
+        let temp = 0;
+        pokeStat.map(
+          (status: { [key: string]: number }) => {
+            const key = Object.keys(status)[0];
+            temp += status[key];
+          }
+        )
+        getBP(temp)
+      }
+    }
+  }
+    , [pokeStat])
 
   return (
     <div className="Pokecard">
@@ -65,13 +78,13 @@ function Pokecard(props: any) {
               <p className="Pokecard-stat-title">{firstCharUpperCase(key)}</p>
               <span
                 className="Pokecard-stat-bar"
-                style={{ width: `${status[key]}px` }}
+                style={{ width: `${status[key] * 0.7}px` }}
               ></span>
               <span className="Pokecard-stat-val">{status[key]}</span>
             </span>
           );
         })}
-        <h4 className="Pokecard-BP">Total Battle Point: {battlePoint}</h4>
+        <h4 className="Pokecard-BP">Total Battle Point: <span className="Pokecard-total">{battlePoint}</span></h4>
       </div>
     </div>
   );
