@@ -1,0 +1,14 @@
+.PokeGame {
+  display: flex;
+  flex-flow: column;
+}
+.PokeGame-team {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.PokeGame-member {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}

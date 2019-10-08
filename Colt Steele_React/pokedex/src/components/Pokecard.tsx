@@ -2,30 +2,46 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Pokecard.css";
 
-function Pokecard(props: any) {
-  const { pokeName, url, id } = props;
-  const imgApi = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/";
-  const dataApi = url;
+interface pokemonStat {
+  [key: string]: number;
+}
 
-  const [pokeTypes, setPokeTypes] = useState([""]);
+function firstCharUpperCase(string: string): string {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function Pokecard(props: any) {
+  const { pokeName, id, getBP } = props;
+  const imgApi = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/";
+  const dataApi = "https://pokeapi.co/api/v2/pokemon/";
+  let battlePoint = 0;
+
+  const [pokeTypes, setPokeTypes] = useState<string[]>([]);
+  const [pokeStat, setPokeStat] = useState<pokemonStat[]>([]);
 
   useEffect(() => {
-    axios.get(dataApi).then(response => {
-      const types: string[] = [];
-      response.data.types.map(
-        (type: { slot: number; type: { name: string; url: string } }) => {
-          return types.push(type.type.name);
+    if (getBP) {
+      getBP(3);
+    }
+    axios.get(`${dataApi}${id}/`).then(response => {
+      response.data.types.map((type: { type: { name: string } }) => {
+        setPokeTypes(prev => {
+          return [...prev, type.type.name];
+        });
+      });
+      response.data.stats.map(
+        (status: { base_stat: number; stat: { name: string } }) => {
+          setPokeStat(prev => {
+            return [...prev, { [status.stat.name]: status.base_stat }];
+          });
         }
       );
-      setPokeTypes(types);
     });
   }, []);
 
   return (
     <div className="Pokecard">
-      <h3 className="Pokecard-name">
-        {pokeName.charAt(0).toUpperCase() + pokeName.slice(1)}
-      </h3>
+      <h3 className="Pokecard-name">{firstCharUpperCase(pokeName)}</h3>
       <img
         src={`${imgApi}${id < 100 ? (id < 10 ? "00" : "0") : ""}${id}.png`}
         alt={pokeName}
@@ -40,6 +56,23 @@ function Pokecard(props: any) {
           );
         })}
       </p>
+      <div className="Pokecard-stat">
+        {pokeStat.map((status: { [key: string]: number }, i) => {
+          const key = Object.keys(status)[0];
+          battlePoint += status[key];
+          return (
+            <span key={i} className={`Pokkecard-stat-each ${key}`}>
+              <p className="Pokecard-stat-title">{firstCharUpperCase(key)}</p>
+              <span
+                className="Pokecard-stat-bar"
+                style={{ width: `${status[key]}px` }}
+              ></span>
+              <span className="Pokecard-stat-val">{status[key]}</span>
+            </span>
+          );
+        })}
+        <h4 className="Pokecard-BP">Total Battle Point: {battlePoint}</h4>
+      </div>
     </div>
   );
 }

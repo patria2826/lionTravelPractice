@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import Pokedex from "./Pokedex";
+import PokeGame from "./PokeGame";
 
-ReactDOM.render(<App />, document.querySelector("#root"));
+// ReactDOM.render(<Pokedex />, document.querySelector("#root"));
+ReactDOM.render(<PokeGame />, document.querySelector("#root"));
