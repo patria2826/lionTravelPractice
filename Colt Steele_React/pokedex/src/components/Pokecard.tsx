@@ -40,17 +40,14 @@ function Pokecard(props: any) {
     if (getBP) {
       if (pokeStat.length >= 6) {
         let temp = 0;
-        pokeStat.map(
-          (status: { [key: string]: number }) => {
-            const key = Object.keys(status)[0];
-            temp += status[key];
-          }
-        )
-        getBP(temp)
+        pokeStat.map((status: { [key: string]: number }) => {
+          const key = Object.keys(status)[0];
+          temp += status[key];
+        });
+        getBP(temp);
       }
     }
-  }
-    , [pokeStat])
+  }, [pokeStat]);
 
   return (
     <div className="Pokecard">
@@ -84,7 +81,10 @@ function Pokecard(props: any) {
             </span>
           );
         })}
-        <h4 className="Pokecard-BP">Total Battle Point: <span className="Pokecard-total">{battlePoint}</span></h4>
+        <h4 className="Pokecard-BP">
+          Total Battle Point:{" "}
+          <span className="Pokecard-total">{battlePoint}</span>
+        </h4>
       </div>
     </div>
   );
