@@ -1,0 +1,14 @@
+.country {
+  width: 30px;
+  border: 2px solid transparent;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+.country.active {
+  border: 2px solid steelblue;
+}
+i.flag.us,
+i.flag.tw {
+  margin: 0;
+}
