@@ -19,7 +19,7 @@ const AddMovie = () => {
 
   const addMovie = (e: FormEvent): void => {
     e.preventDefault();
-    setMovies((prevMovies: MovieInfo) => {
+    setMovies(() => {
       setId(Math.floor(Math.random() * 100000));
       return [...movies, { name: name, price: price, id: id }];
     });
