@@ -93,5 +93,5 @@ const selectedSongReducer = (
 export default combineReducers({
   // the keys of this obj are going to be the keys that show up inside of our state obj
   songs: songsReducer,
-  seletedSong: selectedSongReducer
+  selectedSong: selectedSongReducer
 });
