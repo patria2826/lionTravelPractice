@@ -1,4 +1,4 @@
-import React from "react";
 import { combineReducers } from "redux";
+import postReducer from "./postsReducer";
 
-export default combineReducers({ replacrMehahaha: () => '"haha"' });
+export default combineReducers({ posts: postReducer });
