@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchPosts } from "../actions";
+import { fetchPostsAndUsers } from "../actions";
+import UserHeader from "./UserHeaders";
 
 const PostList = (props: any) => {
   const { posts } = props;
 
   useEffect(() => {
-    props.fetchPosts();
+    props.fetchPostsAndUsers();
   }, []);
-  console.log(posts);
+  // console.log(posts);
 
   const renderList = () => {
     return posts.map((post: any) => {
@@ -19,6 +20,7 @@ const PostList = (props: any) => {
             <div className="description">
               <h2>{post.title}</h2>
               <p>{post.body}</p>
+              <UserHeader userId={post.userId} />
             </div>
           </div>
         </div>
@@ -35,5 +37,5 @@ const mapStateToProps = (state: any) => {
 
 export default connect(
   mapStateToProps,
-  { fetchPosts }
+  { fetchPostsAndUsers }
 )(PostList);
