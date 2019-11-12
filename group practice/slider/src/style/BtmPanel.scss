@@ -1,0 +1,22 @@
+$class-name: "btm-panel";
+
+.#{$class-name} {
+  width: calc(100vw / 6);
+  height: 40px;
+  color: #fff;
+  position: relative;
+  transition: 0.3s;
+  cursor: pointer;
+  .#{$class-name}-progress-container,
+  .#{$class-name}-progress-bar {
+    height: 2px;
+    display: block;
+    position: absolute;
+    background: #fff;
+    bottom: 0;
+  }
+  .#{$class-name}-progress-container {
+    width: 100%;
+    opacity: 0.5;
+  }
+}
