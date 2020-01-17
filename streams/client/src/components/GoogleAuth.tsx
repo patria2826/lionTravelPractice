@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { signedIn, signedOut } from "../actions";
 
 const GoogleAuth = (props: any) => {
   const { isSignedIn, signedIn, signedOut } = props;
-  let auth: any;
+  const auth: any = useRef();
 
   useEffect(() => {
     window.gapi.load("client:auth2", () => {
@@ -15,17 +15,17 @@ const GoogleAuth = (props: any) => {
           scope: "email"
         })
         .then(() => {
-          auth = window.gapi.auth2.getAuthInstance();
-          onAuthChange(auth.isSignedIn.get());
-          auth.isSignedIn.listen(onAuthChange); //"listen" invokes "onAuthChange" whenever auth.isSignedIn is changed
+          auth.current = window.gapi.auth2.getAuthInstance();
+          onAuthChange(auth.current.isSignedIn.get());
+          auth.current.isSignedIn.listen(onAuthChange); //"listen" invokes "onAuthChange" whenever auth.isSignedIn is changed
         });
     });
     return () => {};
-  }, []);
+  });
 
   const onAuthChange = (isSignedIn: boolean) => {
     if (isSignedIn) {
-      signedIn(auth.currentUser.get().getId());
+      signedIn(auth.current.currentUser.get().getId());
     } else {
       signedOut();
     }
@@ -35,7 +35,8 @@ const GoogleAuth = (props: any) => {
     window.gapi.auth2.getAuthInstance().signIn();
   };
   const onSignOutClick = () => {
-    window.gapi.auth2.getAuthInstance().disconnect(); //will automatically sign in with the same account if you use signOut
+    //will automatically sign in with the same account if you use 'signOut'
+    window.gapi.auth2.getAuthInstance().disconnect();
   };
 
   const renderAuthButton = () => {
@@ -65,7 +66,4 @@ const mapStateToProps = (state: { auth: any }) => {
   return { isSignedIn: state.auth.isSignedIn };
 };
 
-export default connect(
-  mapStateToProps,
-  { signedIn, signedOut }
-)(GoogleAuth);
+export default connect(mapStateToProps, { signedIn, signedOut })(GoogleAuth);
