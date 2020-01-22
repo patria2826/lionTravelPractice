@@ -5,10 +5,10 @@ import {
   FETCH_STREAM,
   FETCH_STREAMS
 } from "../types";
-import { Action } from "../interface";
+import { IAction } from "../interface";
 import _ from "lodash";
 
-export default (state = {}, action: Action) => {
+export default (state = {}, action: IAction) => {
   switch (action.type) {
     case CREATE_STREAM:
       return { ...state, [action.payload.id]: action.payload };

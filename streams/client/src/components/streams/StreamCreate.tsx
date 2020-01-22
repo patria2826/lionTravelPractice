@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form"; //Fiedl is a react component and reduxForm is a function
 import cx from "classnames";
 import { createStream } from "../../actions";
-import { FormValues } from "../../interface";
+import { IFormValues } from "../../interface";
 
 class StreamCreate extends React.Component<any> {
   renderError = (meta: any) => {
@@ -28,7 +28,7 @@ class StreamCreate extends React.Component<any> {
     );
   };
 
-  onSubmit = (formValues: FormValues) => {
+  onSubmit = (formValues: IFormValues) => {
     this.props.createStream(formValues);
   };
   render() {
